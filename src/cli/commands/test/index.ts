@@ -48,6 +48,7 @@ import {
 } from './formatters';
 import * as utils from './utils';
 import { getIacDisplayedOutput } from './iac-output';
+import { getEcosystem, getPlugin, testEcosystem } from '../../../lib/ecosystems';
 
 const debug = Debug('snyk-test');
 const SEPARATOR = '\n-------------------------------------------------------\n';
@@ -102,6 +103,12 @@ async function test(...args: MethodArgs): Promise<TestCommandResult> {
     } else {
       throw err;
     }
+  }
+
+  const ecosystem = getEcosystem(options);
+  if (ecosystem) {
+   const commandResult = await testEcosystem(args);
+   return commandResult;
   }
 
   // Promise waterfall to test all other paths sequentially

@@ -18,6 +18,7 @@ export interface TestOptions {
   'prune-repeated-subdependencies'?: boolean;
   showVulnPaths: ShowVulnPaths;
   failOn?: FailOn;
+  depSourceDir?: string;
   reachableVulns?: boolean;
   reachableVulnsTimeout?: number;
   yarnWorkspaces?: boolean;
